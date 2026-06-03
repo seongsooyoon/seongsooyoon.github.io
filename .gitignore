@@ -1,0 +1,4 @@
+.claude/
+secrets/
+*.env
+server.log

@@ -1,0 +1,63 @@
+{
+  "_note": "merged=true(13시 이후): day=사전포함 누적 총투표율, early=그 중 사전분. count=개표 총괄(출구조사/개표). 18시 후 개표 진행되면 categories.*.races와 count.counted_pct·tally를 실데이터로 갱신.",
+  "election": "제9회 전국동시지방선거",
+  "updated": "2026-06-03T20:03:00+09:00",
+  "turnout": {
+    "as_of_day": "오후 5시",
+    "merged": true,
+    "early": { "national": 23.51, "prev": 20.62 },
+    "day":   { "national": 57.4, "prev": 50.9 },
+    "source": "중앙선거관리위원회",
+    "regions": [
+      { "name": "전남", "early": 38.95, "day": 60.0 },
+      { "name": "강원", "early": 27.05, "day": 57.2 },
+      { "name": "전북", "early": 35.05, "day": 56.3 },
+      { "name": "경남", "early": 24.64, "day": 55.5 },
+      { "name": "울산", "early": 22.46, "day": 53.6 },
+      { "name": "세종", "early": 27.67, "day": 53.5 },
+      { "name": "경북", "early": 22.42, "day": 52.9 },
+      { "name": "서울", "early": 23.84, "day": 52.7 },
+      { "name": "부산", "early": 21.29, "day": 51.8 },
+      { "name": "충북", "early": 23.56, "day": 51.7 },
+      { "name": "대전", "early": 22.53, "day": 51.1 },
+      { "name": "충남", "early": 22.48, "day": 50.9 },
+      { "name": "인천", "early": 21.62, "day": 49.2 },
+      { "name": "경기", "early": 20.96, "day": 49.0 },
+      { "name": "광주", "early": 27.83, "day": 47.5 },
+      { "name": "대구", "early": 18.65, "day": null },
+      { "name": "제주", "early": 22.87, "day": null }
+    ]
+  },
+  "count": {
+    "as_of": "방송3사 출구조사 (18시)",
+    "source": "방송3사(KBS·MBC·SBS) 출구조사",
+    "counted_pct": 0.0,
+    "total_seats": 17, "seat_label": "광역단체장",
+    "tally": [
+      { "party": "더불어민주당", "val": 11 },
+      { "party": "국민의힘", "val": 1 },
+      { "party": "경합", "val": 4 }
+    ],
+    "contests": "부산 · 대구 · 강원 · 전북",
+    "note": "20시 기준 개표 극초반(당선확정 0곳) · 당선 윤곽은 자정~새벽 · 현재는 방송3사 출구조사 우세 기준"
+  },
+  "national": { "turnout_pct": 57.4, "counted_pct": 0.0 },
+  "categories": {
+    "sido": { "label": "광역단체장", "races": [
+      { "area": "부산", "counted_pct": 0, "exit": true, "candidates": [
+        { "name": "전재수", "party": "더불어민주당", "pct": 50.2, "status": "exit" },
+        { "name": "박형준", "party": "국민의힘", "pct": 48.3 } ] },
+      { "area": "대구", "counted_pct": 0, "exit": true, "candidates": [
+        { "name": "추경호", "party": "국민의힘", "pct": 49.9, "status": "exit" },
+        { "name": "김부겸", "party": "더불어민주당", "pct": 49.1 } ] },
+      { "area": "강원", "counted_pct": 0, "exit": true, "candidates": [
+        { "name": "우상호", "party": "더불어민주당", "pct": 51.3, "status": "exit" },
+        { "name": "김진태", "party": "국민의힘", "pct": 48.7 } ] }
+    ] },
+    "sigun": { "label": "기초단체장", "races": [] },
+    "edu":   { "label": "교육감", "races": [] },
+    "gwang": { "label": "광역의원", "races": [] },
+    "gicho": { "label": "기초의원", "races": [] },
+    "prop":  { "label": "비례대표", "races": [] }
+  }
+}

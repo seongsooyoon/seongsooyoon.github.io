@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a1733">
+<title>제9회 전국동시지방선거 실시간 | 한국정책연구소</title>
+<meta name="description" content="제9회 전국동시지방선거 실시간 투표율(사전+당일)·개표·당선현황. 한국정책연구소 제작 (대표 윤성수).">
+<meta property="og:type" content="website">
+<meta property="og:title" content="제9회 지방선거 실시간 투표율·개표 현황">
+<meta property="og:description" content="사전+당일 총투표율 실시간 · 전국 시도별 · 개표·당선현황 | 한국정책연구소">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg0:#070f24; --bg1:#0a1733; --bg2:#0f2148; --card:#0e1b3c; --card2:#13264f;
+    --line:rgba(255,255,255,.10); --line2:rgba(255,255,255,.16);
+    --ink:#eef3fb; --mut:#9fb1d0; --mut2:#6f84ab;
+    --gold:#ffd45e; --gold2:#f6b73c; --good:#34e89e; --bad:#ff6b6b;
+    --dem:#1f5fd0; --ppp:#e8333f; --reform:#ff7a1a; --rebuild:#2aa7ff;
+    --shadow:0 10px 40px rgba(0,0,0,.45);
+    --r:18px;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:"Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    color:var(--ink); line-height:1.45; -webkit-text-size-adjust:100%;
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(40,90,200,.25), transparent 60%),
+      radial-gradient(900px 500px at -10% 10%, rgba(120,60,220,.18), transparent 55%),
+      linear-gradient(180deg, var(--bg1) 0%, var(--bg0) 100%);
+    background-attachment:fixed; min-height:100vh;
+  }
+  a{color:inherit;text-decoration:none}
+
+  /* ── 브랜드바 ── */
+  .brandbar{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    padding:calc(9px + env(safe-area-inset-top)) 16px 9px;
+    background:linear-gradient(90deg, rgba(10,18,40,.92), rgba(16,30,66,.92));
+    border-bottom:1px solid var(--line); backdrop-filter:blur(8px);
+    position:relative; z-index:5;
+  }
+  .brandbar .maker{font-size:12.5px; font-weight:800; letter-spacing:.2px; display:flex; flex-direction:column}
+  .brandbar .maker b{color:var(--gold)}
+  .brandbar .slogan{font-size:10px; font-weight:600; color:var(--mut2); margin-top:2px; letter-spacing:0}
+  .brandbar .author{font-size:11px; color:var(--mut); font-weight:600; text-align:right; white-space:nowrap}
+  .brandbar .author b{color:#fff; font-size:13px; display:block; margin-top:1px}
+
+  /* ── 히어로(총투표율) ── */
+  header.hero{padding:18px 16px 6px; max-width:1180px; margin:0 auto}
+  .htop{display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:12px}
+  .htop h1{margin:0; font-size:18px; font-weight:900; letter-spacing:-.4px}
+  .htop h1 span{color:var(--gold)}
+  .live{display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:800; color:var(--good); background:rgba(52,232,158,.12); padding:5px 10px; border-radius:99px; border:1px solid rgba(52,232,158,.25)}
+  .live i{width:7px;height:7px;border-radius:50%;background:var(--good);animation:pulse 1.5s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(52,232,158,.6)}70%{box-shadow:0 0 0 8px rgba(52,232,158,0)}100%{box-shadow:0 0 0 0 rgba(52,232,158,0)}}
+
+  .totalcard{
+    position:relative; overflow:hidden; border-radius:22px; padding:20px 20px 18px;
+    background:linear-gradient(135deg, rgba(28,52,110,.85), rgba(14,27,60,.85));
+    border:1px solid var(--line2); box-shadow:var(--shadow);
+  }
+  .totalcard::before{content:""; position:absolute; inset:0; background:radial-gradient(600px 200px at 90% 0%, rgba(255,212,94,.16), transparent 60%); pointer-events:none}
+  .tc-lbl{font-size:12.5px; color:var(--mut); font-weight:700; display:flex; align-items:center; gap:7px}
+  .tc-lbl .as{background:rgba(255,255,255,.10); color:#dfe8f7; font-size:10.5px; padding:2px 9px; border-radius:99px; font-weight:800}
+  .tc-big{display:flex; align-items:flex-end; gap:10px; margin-top:4px}
+  .tc-num{font-size:60px; font-weight:900; line-height:.95; letter-spacing:-2.5px;
+    background:linear-gradient(180deg,#fff, #ffe9ad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+  .tc-num small{font-size:26px; -webkit-text-fill-color:var(--gold); margin-left:3px}
+  .tc-diff{margin-bottom:8px; font-size:13px; font-weight:800; color:var(--good)}
+  .tc-diff.down{color:var(--bad)}
+  .tc-bar{height:12px; border-radius:99px; background:rgba(255,255,255,.10); overflow:hidden; margin-top:14px; display:flex}
+  .tc-bar .e{background:linear-gradient(90deg,#7c5cff,#9d7bff); height:100%}
+  .tc-bar .d{background:linear-gradient(90deg,var(--gold2),var(--gold)); height:100%}
+  .tc-split{display:flex; gap:10px; margin-top:12px}
+  .tc-seg{flex:1; background:rgba(255,255,255,.05); border:1px solid var(--line); border-radius:12px; padding:10px 12px}
+  .tc-seg .k{font-size:11px; color:var(--mut); font-weight:700; display:flex; align-items:center; gap:6px}
+  .tc-seg .k i{width:9px;height:9px;border-radius:3px;display:inline-block}
+  .tc-seg.early .k i{background:#9d7bff} .tc-seg.day .k i{background:var(--gold)}
+  .tc-seg .v{font-size:21px; font-weight:900; margin-top:3px}
+  .tc-seg .v small{font-size:12px; color:var(--mut); font-weight:700}
+  .tc-foot{font-size:10.5px; color:var(--mut2); margin-top:11px; line-height:1.5}
+
+  /* ── 개표 총괄 카드 ── */
+  .countcard{margin-top:12px; border-radius:20px; padding:16px 16px 14px;
+    background:linear-gradient(135deg, rgba(40,30,70,.7), rgba(14,27,60,.8)); border:1px solid var(--line2); box-shadow:var(--shadow)}
+  .cc-lbl{font-size:13px; font-weight:900; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .cc-lbl .cc-as{font-size:10.5px; font-weight:800; color:#241a00; background:var(--gold); padding:2px 9px; border-radius:99px}
+  .cc-tally{display:flex; gap:9px; margin-top:13px}
+  .cc-seg{flex:1; text-align:center; border:1px solid; border-radius:14px; padding:12px 6px}
+  .cc-seg .cc-v{font-size:34px; font-weight:900; line-height:1; letter-spacing:-1px}
+  .cc-seg .cc-p{font-size:11.5px; font-weight:800; color:var(--mut); margin-top:5px}
+  .cc-cnt{margin-top:13px; font-size:12px; font-weight:700; color:var(--mut); display:flex; align-items:center; gap:9px}
+  .cc-cnt b{color:#fff; font-size:14px}
+  .cc-cnt .cc-bar{flex:1; height:8px; border-radius:99px; background:rgba(255,255,255,.08); overflow:hidden}
+  .cc-cnt .cc-bar span{display:block; height:100%; background:linear-gradient(90deg,var(--good),#7ff0c0); border-radius:99px; transition:width .6s}
+  .cc-foot{font-size:10.5px; color:var(--mut2); margin-top:11px; line-height:1.55}
+  .cc-foot b{color:var(--ink)}
+
+  /* ── 탭 ── */
+  nav.tabs{
+    position:sticky; top:0; z-index:30; margin-top:16px;
+    background:linear-gradient(180deg, rgba(7,15,36,.96), rgba(7,15,36,.82));
+    backdrop-filter:blur(10px); border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    padding:9px 10px; display:flex; gap:7px; overflow-x:auto; scrollbar-width:none;
+  }
+  nav.tabs::-webkit-scrollbar{display:none}
+  nav.tabs button{
+    flex:0 0 auto; border:1px solid var(--line2); background:rgba(255,255,255,.04); color:var(--ink);
+    font-size:13.5px; font-weight:800; padding:9px 15px; border-radius:99px; cursor:pointer;
+    transition:.18s; white-space:nowrap; font-family:inherit;
+  }
+  nav.tabs button.on{background:linear-gradient(135deg,var(--gold2),var(--gold)); color:#241a00; border-color:transparent; box-shadow:0 4px 14px rgba(246,183,60,.3)}
+
+  main{padding:14px 14px 20px; max-width:1180px; margin:0 auto}
+  .toolbar{display:flex; align-items:center; justify-content:space-between; gap:8px; margin:2px 2px 14px}
+  .toolbar .cat{font-size:17px; font-weight:900}
+  .refresh{font-size:11px; color:var(--mut); display:flex; align-items:center; gap:7px}
+  .refresh button{border:1px solid var(--line2); background:rgba(255,255,255,.05); color:var(--ink); border-radius:9px; padding:6px 10px; font-size:11.5px; font-weight:800; cursor:pointer; font-family:inherit}
+
+  /* ── 내 지역 ── */
+  .myreg{background:linear-gradient(135deg, rgba(255,212,94,.14), rgba(255,212,94,.04)); border:1px solid rgba(255,212,94,.35); border-radius:16px; padding:13px 14px; margin-bottom:14px}
+  .myreg .mrk{font-size:13px; font-weight:900; color:var(--gold); display:flex; align-items:center; gap:7px}
+  .myreg .mrhint{font-size:9.5px; font-weight:800; color:#cdbf94; background:rgba(255,212,94,.16); padding:2px 7px; border-radius:99px}
+  .myreg .mrsel{display:flex; gap:8px; margin-top:10px}
+  .myreg .mrsel select,.myreg .mrsel input{
+    flex:1; min-width:0; font-family:inherit; font-size:14px; font-weight:700; color:#fff;
+    background:rgba(0,0,0,.25); border:1px solid var(--line2); border-radius:11px; padding:11px 12px; -webkit-appearance:none; appearance:none}
+  .myreg .mrsel select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path d='M2 4l4 4 4-4' stroke='%23ffd45e' stroke-width='2' fill='none'/></svg>"); background-repeat:no-repeat; background-position:right 12px center; padding-right:30px}
+  .myreg .mrsel select option{color:#111}
+  .myreg .mrsel input::placeholder{color:#9fb1d0}
+  .myreg .mrgo{display:block; text-align:center; margin-top:10px; background:linear-gradient(135deg,var(--gold2),var(--gold)); color:#241a00; font-weight:900; font-size:14.5px; padding:12px; border-radius:12px; box-shadow:0 6px 16px rgba(246,183,60,.28)}
+  .myreg .mrgo.alt{background:rgba(255,255,255,.08); color:#fff; border:1px solid var(--line2); box-shadow:none}
+  .myreg .mrnote{font-size:10.5px; color:var(--mut); margin-top:9px; line-height:1.5}
+  .myreg .mrnote b{color:#ffe6a8}
+
+  /* 선관위 바로가기 */
+  .official{display:flex; align-items:center; gap:11px; background:rgba(255,255,255,.04); border:1px solid var(--line2); border-radius:14px; padding:12px 14px; margin-bottom:14px}
+  .official .ic{font-size:22px}
+  .official .tx{flex:1; min-width:0}
+  .official .tx b{font-size:13.5px; display:block}
+  .official .tx span{font-size:11px; color:var(--mut)}
+  .official a.go{flex:0 0 auto; background:var(--ppp); color:#fff; font-weight:800; font-size:13px; padding:10px 14px; border-radius:10px; white-space:nowrap}
+
+  /* ── 투표율 표 ── */
+  .vcard{background:rgba(255,255,255,.035); border:1px solid var(--line); border-radius:var(--r); padding:6px 4px; box-shadow:var(--shadow)}
+  .vlegend{display:flex; gap:14px; justify-content:flex-end; padding:8px 12px 4px; font-size:10.5px; color:var(--mut)}
+  .vlegend i{display:inline-block; width:9px;height:9px;border-radius:2px; margin-right:4px; vertical-align:middle}
+  .vlegend .e i{background:#9d7bff} .vlegend .d i{background:var(--gold)}
+  .vrow{display:grid; grid-template-columns:46px 1fr 64px; align-items:center; gap:9px; padding:9px 12px; border-bottom:1px solid rgba(255,255,255,.05)}
+  .vrow:last-child{border-bottom:0}
+  .vrow.me{background:rgba(255,212,94,.08); border-radius:10px}
+  .vrow .vnm{font-size:13.5px; font-weight:800}
+  .vrow .vnm .star{color:var(--gold); font-size:11px}
+  .vbars{display:flex; flex-direction:column; gap:3px}
+  .vb{height:8px; border-radius:99px; background:rgba(255,255,255,.07); overflow:hidden}
+  .vb span{display:block; height:100%; border-radius:99px; transition:width .8s cubic-bezier(.2,.7,.2,1)}
+  .vb.e span{background:linear-gradient(90deg,#7c5cff,#b9a3ff)}
+  .vb.d span{background:linear-gradient(90deg,var(--gold2),var(--gold))}
+  .vtot{text-align:right}
+  .vtot b{font-size:16px; font-weight:900; color:#fff}
+  .vtot small{display:block; font-size:9.5px; color:var(--mut2); font-weight:700}
+  .vsrc{padding:11px 12px 8px; font-size:10.5px; color:var(--mut2); text-align:center; line-height:1.5}
+
+  /* ── 개표 카드 ── */
+  .grid{display:grid; grid-template-columns:1fr; gap:13px}
+  @media(min-width:680px){ .grid{grid-template-columns:1fr 1fr} }
+  @media(min-width:1020px){ .grid{grid-template-columns:1fr 1fr 1fr} }
+  .race{background:rgba(255,255,255,.04); border:1px solid var(--line); border-radius:var(--r); padding:14px; box-shadow:var(--shadow)}
+  .race .rtop{display:flex; align-items:baseline; justify-content:space-between; gap:8px; margin-bottom:12px}
+  .race .area{font-size:16px; font-weight:900}
+  .race .cnt{font-size:11px; color:var(--mut); font-weight:800; white-space:nowrap}
+  .race .cnt b{color:var(--gold)}
+  .cand{display:flex; align-items:center; gap:11px; margin-bottom:12px}
+  .cand:last-child{margin-bottom:2px}
+  .avatar{width:46px;height:46px;border-radius:12px;flex:0 0 auto;object-fit:cover;background:var(--card2);
+    display:flex;align-items:center;justify-content:center;font-weight:900;font-size:17px;color:#fff;border:2px solid var(--line2)}
+  .cinfo{flex:1; min-width:0}
+  .cinfo .l1{display:flex; align-items:center; gap:6px}
+  .cinfo .nm{font-size:14.5px; font-weight:800; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .cinfo .pt{font-size:11px; color:var(--mut); font-weight:700}
+  .badge{font-size:10px; font-weight:900; padding:2px 8px; border-radius:99px; flex:0 0 auto}
+  .badge.win{background:var(--good); color:#03241a}
+  .badge.lead{background:rgba(255,212,94,.9); color:#241a00}
+  .badge.exit{background:rgba(157,123,255,.9); color:#160a33}
+  .cinfo .l2{display:flex; align-items:center; gap:8px; margin-top:6px}
+  .cinfo .pbar{flex:1; height:9px; border-radius:99px; background:rgba(255,255,255,.08); overflow:hidden}
+  .cinfo .pbar span{display:block;height:100%;border-radius:99px;transition:width .7s}
+  .cinfo .pct{font-size:14px; font-weight:900; white-space:nowrap}
+  .cinfo .votes{font-size:10.5px; color:var(--mut2); font-weight:700}
+  .cand.first .avatar{border-color:var(--gold)}
+
+  .empty{grid-column:1/-1; background:rgba(255,255,255,.03); border:1px dashed var(--line2); border-radius:var(--r); padding:34px 18px; text-align:center; color:var(--mut)}
+  .empty .big{font-size:38px; margin-bottom:10px}
+  .empty b{color:#fff; font-size:16px}
+
+  /* ── 8·9기 비교 ── */
+  .cmpwrap{display:flex; flex-direction:column; gap:14px}
+  .cmphead{background:rgba(255,255,255,.04); border:1px solid var(--line); border-radius:var(--r); padding:16px; box-shadow:var(--shadow)}
+  .ch-title{font-size:15px; font-weight:900; text-align:center}
+  .ch-title span{color:var(--gold); margin:0 4px}
+  .ch-nat{display:flex; align-items:center; justify-content:center; gap:10px; margin:14px 0 4px}
+  .ch-nat .cn{flex:1; text-align:center; border-radius:14px; padding:12px 8px}
+  .ch-nat .box8{background:rgba(120,150,200,.12); border:1px solid var(--line2)}
+  .ch-nat .box9{background:linear-gradient(135deg,rgba(255,212,94,.18),rgba(255,212,94,.05)); border:1px solid rgba(255,212,94,.4); position:relative}
+  .ch-nat .vs{flex:0 0 auto; color:var(--gold); font-weight:900; font-size:18px}
+  .ch-nat .k{font-size:11px; color:var(--mut); font-weight:700}
+  .ch-nat .vv{font-size:30px; font-weight:900; letter-spacing:-1px; margin-top:2px}
+  .ch-nat .vv small{font-size:14px; color:var(--mut)}
+  .ch-nat .box9 .vv{color:var(--gold)}
+  .ch-nat .prog{position:absolute; top:8px; right:8px; font-size:9px; font-weight:900; background:var(--gold); color:#241a00; padding:2px 7px; border-radius:99px}
+  .ch-fair{margin-top:12px; font-size:11.5px; color:var(--mut); line-height:1.6; background:rgba(52,232,158,.06); border:1px solid rgba(52,232,158,.18); border-radius:12px; padding:11px 13px}
+  .ch-fair b{color:var(--ink)}
+  .cmplist{background:rgba(255,255,255,.035); border:1px solid var(--line); border-radius:var(--r); padding:8px 6px; box-shadow:var(--shadow)}
+  .cmpleg{display:flex; gap:14px; justify-content:flex-end; padding:8px 12px 6px; font-size:10.5px; color:var(--mut)}
+  .cmpleg i{display:inline-block; width:9px;height:9px;border-radius:2px;margin-right:4px;vertical-align:middle}
+  .cmpleg .l8 i{background:#7e96c8} .cmpleg .l9 i{background:var(--gold)}
+  .cmprow{display:grid; grid-template-columns:48px 1fr; align-items:center; gap:10px; padding:8px 12px; border-bottom:1px solid rgba(255,255,255,.05)}
+  .cmprow:last-child{border-bottom:0}
+  .cmprow.me{background:rgba(255,212,94,.08); border-radius:10px}
+  .cmprow .cnm{font-size:13.5px; font-weight:800}
+  .cbars{display:flex; flex-direction:column; gap:4px}
+  .cb{position:relative; height:15px; border-radius:99px; background:rgba(255,255,255,.06); overflow:hidden}
+  .cb span{display:block; height:100%; border-radius:99px; transition:width .8s cubic-bezier(.2,.7,.2,1)}
+  .cb.b8 span{background:linear-gradient(90deg,#5c7bbf,#8ea7d8)}
+  .cb.b9 span{background:linear-gradient(90deg,var(--gold2),var(--gold))}
+  .cb em{position:absolute; right:8px; top:50%; transform:translateY(-50%); font-size:10px; font-weight:900; font-style:normal; color:#fff; text-shadow:0 1px 2px rgba(0,0,0,.5)}
+  footer{padding:22px 16px 40px; text-align:center; color:var(--mut2); font-size:11.5px; line-height:1.7; max-width:1180px; margin:0 auto}
+  footer .fbrand{font-size:13.5px; color:var(--ink)} footer .fbrand b{color:var(--gold)}
+  footer .ftag{font-size:12px; color:var(--mut); font-style:italic; margin:5px 0 12px}
+  footer .fcontact{display:flex; gap:9px; justify-content:center; flex-wrap:wrap; margin-bottom:12px}
+  footer .fcontact a{background:rgba(255,255,255,.06); border:1px solid var(--line2); color:#fff; font-weight:800; font-size:13px; padding:9px 16px; border-radius:99px}
+  footer .fnote{font-size:10.5px; color:var(--mut2); max-width:640px; margin:0 auto}
+</style>
+</head>
+<body>
+
+  <div class="brandbar">
+    <div class="maker">한국정책연구소 <b>제작</b><span class="slogan">민심(民心)의 바다를 읽어, 내일의 항로를 그립니다</span></div>
+    <div class="author">대표<b>윤성수</b></div>
+  </div>
+
+  <header class="hero">
+    <div class="htop">
+      <h1>제9회 <span>전국동시지방선거</span></h1>
+      <span class="live"><i></i>LIVE</span>
+    </div>
+
+    <div class="totalcard">
+      <div class="tc-lbl">전국 총투표율 <span class="as" id="asof">집계중</span> <span style="color:var(--mut2)">· 사전＋당일 누적</span></div>
+      <div class="tc-big">
+        <div class="tc-num" id="totalNum">–<small>%</small></div>
+        <div class="tc-diff" id="totalDiff"></div>
+      </div>
+      <div class="tc-bar"><span class="e" id="barE" style="width:0%"></span><span class="d" id="barD" style="width:0%"></span></div>
+      <div class="tc-split">
+        <div class="tc-seg early"><div class="k"><i></i>사전투표 <span style="color:var(--mut2)">(최종)</span></div><div class="v" id="earlyNum">–<small>%</small></div></div>
+        <div class="tc-seg day"><div class="k"><i></i>당일 본투표</div><div class="v" id="dayNum">–<small>%</small></div></div>
+      </div>
+      <div class="tc-foot" id="totalFoot"></div>
+    </div>
+
+    <div id="countWrap"></div>
+  </header>
+
+  <nav class="tabs" id="tabs"></nav>
+
+  <main>
+    <div class="toolbar">
+      <div class="cat" id="catTitle">투표율</div>
+      <div class="refresh"><span id="auto">자동갱신 10초</span><button id="reload">새로고침</button></div>
+    </div>
+
+    <div class="official">
+      <div class="ic">🏛️</div>
+      <div class="tx"><b id="ofTitle">선관위 실시간 원본</b><span id="ofSub">중앙선거관리위원회 선거통계시스템</span></div>
+      <a class="go" id="necLink" target="_blank" rel="noopener">바로가기 ↗</a>
+    </div>
+
+    <div id="view"></div>
+  </main>
+
+  <footer>
+    <div class="fbrand"><b>한국정책연구소</b> 제작 · 대표 <b>윤성수</b></div>
+    <div class="ftag">“민심(民心)의 바다를 읽어, 내일의 항로를 그립니다”</div>
+    <div class="fcontact">
+      <a href="mailto:coqss@naver.com">✉ coqss@naver.com</a>
+      <a href="tel:01034274802">☎ 010-3427-4802</a>
+    </div>
+    <div class="fnote">데이터 출처: 중앙선거관리위원회 선거통계시스템(info.nec.go.kr) · 본 페이지는 공식 자료를 보기 쉽게 정리한 비공식 화면이며, 최종 확정 결과는 중앙선거관리위원회 발표를 따릅니다.</div>
+  </footer>
+
+<script>
+/* ───────── 설정 ───────── */
+const CONFIG = {
+  dataUrl: "results.json",
+  refreshSec: 10,
+  necTurnout: "https://www.nec.go.kr/site/lvt/main.do",
+  necCount: "https://info.nec.go.kr/",
+  myRegion: { sido:"경기도", sigun:"화성시",
+    necSido:"https://www.nec.go.kr/site/lvt/main.do",
+    necSigun:"https://www.nec.go.kr/site/lvt/main.do" },
+  categories: [
+    { id:"turnout", label:"📊 투표율",   nec:"https://www.nec.go.kr/site/lvt/main.do" },
+    { id:"compare", label:"📈 8·9기 비교", nec:"https://www.nec.go.kr/site/lvt/main.do" },
+    { id:"sido",    label:"광역단체장",  nec:"https://info.nec.go.kr/" },
+    { id:"sigun",   label:"기초단체장",  nec:"https://info.nec.go.kr/" },
+    { id:"edu",     label:"교육감",      nec:"https://info.nec.go.kr/" },
+    { id:"gwang",   label:"광역의원",    nec:"https://info.nec.go.kr/" },
+    { id:"gicho",   label:"기초의원",    nec:"https://info.nec.go.kr/" },
+    { id:"prop",    label:"비례대표",    nec:"https://info.nec.go.kr/" }
+  ]
+};
+const PARTY = {
+  "더불어민주당":"#1f5fd0","민주당":"#1f5fd0","국민의힘":"#e8333f",
+  "개혁신당":"#ff7a1a","조국혁신당":"#2aa7ff","진보당":"#d6001c",
+  "정의당":"#ffcc00","무소속":"#8aa0c0"
+};
+const pc = p => PARTY[p] || "#8aa0c0";
+const fmt = n => (n==null?"–":Number(n).toLocaleString("ko-KR"));
+const pct = n => (n==null?"–":Number(n).toFixed(1));
+
+/* 17개 시·도 [짧은이름, 정식명] — 짧은이름은 regions 데이터와 매칭 */
+const SIDO=[["서울","서울특별시"],["부산","부산광역시"],["대구","대구광역시"],["인천","인천광역시"],
+  ["광주","광주광역시"],["대전","대전광역시"],["울산","울산광역시"],["세종","세종특별자치시"],
+  ["경기","경기도"],["강원","강원특별자치도"],["충북","충청북도"],["충남","충청남도"],
+  ["전북","전북특별자치도"],["전남","전라남도"],["경북","경상북도"],["경남","경상남도"],["제주","제주특별자치도"]];
+const NEC_TURNOUT="https://www.nec.go.kr/site/lvt/main.do";   // 선관위 실시간 투표율 화면
+/* 개인별 내 지역 — 이 휴대폰(브라우저)에만 저장 */
+function getMy(){ try{return JSON.parse(localStorage.getItem("kpri_myregion"))||{sido:"",sigun:""}}catch(e){return{sido:"",sigun:""}} }
+function setMy(o){ try{localStorage.setItem("kpri_myregion",JSON.stringify(o))}catch(e){} }
+function sidoFull(s){ const f=SIDO.find(x=>x[0]===s); return f?f[1]:s; }
+window.onSido=function(v){const m=getMy();m.sido=v;setMy(m);renderTurnout();};
+window.onSigun=function(v){const m=getMy();m.sigun=(v||"").trim();setMy(m);renderTurnout();};
+
+/* 민선8기(2022 제8회) 시도별 최종 투표율 — 역사 고정값(출처: 중앙선관위/위키) */
+const COMPARE2022 = {
+  national_final: 50.9, national_early: 20.62, national_noon: 15.0,
+  regions: { "서울":53.2,"부산":49.1,"대구":43.2,"인천":48.9,"광주":37.7,"대전":49.7,
+    "울산":52.3,"세종":51.2,"경기":50.6,"강원":57.8,"충북":50.6,"충남":49.8,
+    "전북":48.7,"전남":58.5,"경북":52.7,"경남":53.4,"제주":53.1 }
+};
+
+/* ───────── 내장 기본데이터(results.json 없어도 표시) ───────── */
+const FALLBACK = {
+  election:"제9회 전국동시지방선거",
+  updated:"2026-06-03T20:03:00+09:00",
+  turnout:{
+    as_of_day:"오후 5시",
+    merged:true,                              // 13시 이후=선관위 사전합산 누적
+    early:{ national:23.51, prev:20.62 },      // 사전투표 최종(이 누적에 포함됨)
+    day:{ national:57.4, prev:50.9 },          // 누적 총투표율(사전 포함) / 비교=2022 최종
+    source:"중앙선거관리위원회",
+    // merged=true이므로 day=시도별 누적 총투표율(사전 포함), early=그 중 사전분
+    regions:[
+      {name:"전남",early:38.95,day:60.0},{name:"강원",early:27.05,day:57.2},
+      {name:"전북",early:35.05,day:56.3},{name:"경남",early:24.64,day:55.5},
+      {name:"울산",early:22.46,day:53.6},{name:"세종",early:27.67,day:53.5},
+      {name:"경북",early:22.42,day:52.9},{name:"서울",early:23.84,day:52.7},
+      {name:"부산",early:21.29,day:51.8},{name:"충북",early:23.56,day:51.7},
+      {name:"대전",early:22.53,day:51.1},{name:"충남",early:22.48,day:50.9},
+      {name:"인천",early:21.62,day:49.2},{name:"경기",early:20.96,day:49.0},
+      {name:"광주",early:27.83,day:47.5},{name:"대구",early:18.65,day:null},
+      {name:"제주",early:22.87,day:null}
+    ]
+  },
+  // ── 개표 총괄 (방송3사 출구조사 기준, 18시 발표) ──
+  count:{
+    as_of:"방송3사 출구조사 (18시)",
+    source:"방송3사(KBS·MBC·SBS) 출구조사",
+    counted_pct:0.0,
+    total_seats:17, seat_label:"광역단체장",
+    tally:[
+      {party:"더불어민주당", val:11},
+      {party:"국민의힘", val:1},
+      {party:"경합", val:4}
+    ],
+    contests:"부산 · 대구 · 강원 · 전북",
+    note:"20시 기준 개표 극초반(당선확정 0곳) · 당선 윤곽은 자정~새벽 · 현재는 방송3사 출구조사 우세 기준"
+  },
+  national:{ turnout_pct:57.4, counted_pct:0.0 },
+  categories:{
+    sido:{label:"광역단체장",races:[
+      {area:"부산", counted_pct:0, exit:true, candidates:[
+        {name:"전재수",party:"더불어민주당",pct:50.2,status:"exit"},
+        {name:"박형준",party:"국민의힘",pct:48.3}]},
+      {area:"대구", counted_pct:0, exit:true, candidates:[
+        {name:"추경호",party:"국민의힘",pct:49.9,status:"exit"},
+        {name:"김부겸",party:"더불어민주당",pct:49.1}]},
+      {area:"강원", counted_pct:0, exit:true, candidates:[
+        {name:"우상호",party:"더불어민주당",pct:51.3,status:"exit"},
+        {name:"김진태",party:"국민의힘",pct:48.7}]}
+    ]},
+    sigun:{label:"기초단체장",races:[]},
+    edu:{label:"교육감",races:[]}, gwang:{label:"광역의원",races:[]},
+    gicho:{label:"기초의원",races:[]}, prop:{label:"비례대표",races:[]}
+  }
+};
+
+let CUR = CONFIG.categories[0].id;
+let DATA = FALLBACK;
+
+/* ───────── 탭 ───────── */
+function buildTabs(){
+  const nav=document.getElementById("tabs"); nav.innerHTML="";
+  CONFIG.categories.forEach((c,i)=>{
+    const b=document.createElement("button");
+    b.textContent=c.label; b.className=i===0?"on":"";
+    b.onclick=()=>{CUR=c.id;[...nav.children].forEach(x=>x.classList.remove("on"));b.classList.add("on");render();};
+    nav.appendChild(b);
+  });
+}
+
+/* ───────── 히어로(총투표율) ───────── */
+function renderHero(){
+  const t=DATA&&DATA.turnout; if(!t) return;
+  const e=t.early||{}, d=t.day||{};
+  const merged = !!t.merged;
+  const early = e.national||0;
+  // merged(13시 이후): day.national=사전포함 누적 총투표율 → 더하지 않음(이중계산 방지)
+  const total = merged ? (d.national||0) : early + (d.national||0);
+  const dayDisp = merged ? Math.max(0, total - early) : (d.national||0);  // 당일 실제분
+  const prevTotal = merged ? (d.prev||0) : (e.prev||0)+(d.prev||0);        // merged 비교=2022 최종
+  const diff = total - prevTotal;
+  document.getElementById("totalNum").innerHTML = pct(total)+'<small>%</small>';
+  document.getElementById("earlyNum").innerHTML = pct(early)+'<small>%</small>';
+  document.getElementById("dayNum").innerHTML = pct(dayDisp)+'<small>%</small>';
+  document.getElementById("asof").textContent = (t.as_of_day||"")+" 기준";
+  const dd=document.getElementById("totalDiff");
+  if(prevTotal){ dd.textContent=(diff>=0?"▲ ":"▼ ")+Math.abs(diff).toFixed(1)+"%p"; dd.className="tc-diff"+(diff>=0?"":" down"); }
+  const denom=Math.max(total,1);
+  document.getElementById("barE").style.width=(early/denom*Math.min(100,total))+"%";
+  document.getElementById("barD").style.width=(dayDisp/denom*Math.min(100,total))+"%";
+  document.getElementById("totalFoot").innerHTML = merged
+    ? `누적 총투표율 <b style="color:var(--gold)">${pct(total)}%</b> (사전 <b style="color:#b9a3ff">${pct(early)}%</b> 포함) · <b style="color:var(--good)">2022년 최종 ${pct(prevTotal)}% 이미 추월 (＋${diff.toFixed(1)}%p)</b> — 역대급 열기`
+      + `<br>※ 선관위는 13시부터 사전투표를 합산 발표 → 현재 수치는 사전＋당일이 합쳐진 누적 총투표율입니다.`
+    : `사전투표 <b style="color:#b9a3ff">${pct(early)}%</b>(역대 최고) ＋ 당일 본투표 <b style="color:var(--gold)">${pct(dayDisp)}%</b> 누적 · 2022년 동시간대 대비 ${diff>=0?"＋":""}${diff.toFixed(1)}%p`
+      + `<br>※ 선관위는 13시부터 사전투표를 합산 발표 → 그 전엔 사전＋당일을 더한 값이 실제 총투표율입니다.`;
+  renderCountSummary();
+}
+
+/* ───────── 개표 총괄 집계 카드 ───────── */
+function renderCountSummary(){
+  const w=document.getElementById("countWrap"); if(!w) return;
+  const c=DATA&&DATA.count;
+  if(!c){ w.innerHTML=""; return; }
+  const tally=c.tally||[];
+  const seats=c.total_seats||tally.reduce((s,x)=>s+(x.val||0),0);
+  w.innerHTML=`<div class="countcard">
+    <div class="cc-lbl">🗳️ 개표 총괄 · ${c.seat_label||'광역단체장'} ${seats}석 <span class="cc-as">${c.as_of||''}</span></div>
+    <div class="cc-tally">${tally.map(x=>{
+      const col = x.party==='경합' ? '#8aa0c0' : pc(x.party);
+      return `<div class="cc-seg" style="border-color:${col}33;background:${col}1f">
+        <div class="cc-v" style="color:${col}">${x.val}</div>
+        <div class="cc-p">${x.party==='경합'?'경합':x.party+' 우세'}</div></div>`;
+    }).join('')}</div>
+    ${c.counted_pct!=null?`<div class="cc-cnt">전국 개표율 <b>${pct(c.counted_pct)}%</b> <span class="cc-bar"><span style="width:${Math.min(100,c.counted_pct)}%"></span></span></div>`:''}
+    <div class="cc-foot">${c.contests?'경합지 <b style="color:#ffd45e">'+c.contests+'</b> · ':''}출처: ${c.source||''}<br>${c.note||''}</div>
+  </div>`;
+}
+
+/* ───────── 투표율 뷰 ───────── */
+function renderTurnout(){
+  const v=document.getElementById("view");
+  const t=DATA&&DATA.turnout;
+  const m=getMy();
+  const regName = m.sido ? (sidoFull(m.sido)+(m.sigun?(" "+m.sigun):"")) : "";
+  let html = `<div class="myreg">
+    <div class="mrk">⭐ 내 지역 실시간 투표율 <span class="mrhint">이 휴대폰에 저장</span></div>
+    <div class="mrsel">
+      <select onchange="onSido(this.value)" aria-label="시도 선택">
+        <option value="">시·도 선택</option>
+        ${SIDO.map(s=>`<option value="${s[0]}"${s[0]===m.sido?' selected':''}>${s[1]}</option>`).join("")}
+      </select>
+      <input type="text" inputmode="text" placeholder="시·군·구 (예: 화성시)" value="${(m.sigun||'').replace(/"/g,'&quot;')}" onchange="onSigun(this.value)" aria-label="시군구 입력">
+    </div>
+    <a class="mrgo${m.sido?'':' alt'}" href="${NEC_TURNOUT}" target="_blank" rel="noopener">
+      ${m.sido?`${regName} 실시간 투표율 보기 ↗`:`선관위 실시간 투표율 보기 ↗`}
+    </a>
+    <div class="mrnote">${m.sido
+      ? `선관위 실시간 화면에서 <b>${regName}</b>를 선택하면 시·군·구별 정확 수치를 볼 수 있습니다.`
+      : `먼저 <b>시·도</b>를 선택하세요. 선택은 <b>이 휴대폰에만</b> 저장되어 다음에 자동 적용됩니다.`}</div>
+  </div>`;
+
+  if(!t||!t.regions){ v.innerHTML=html+`<div class="empty"><div class="big">📊</div><b>투표율 집계 대기</b></div>`; return; }
+  const merged=!!t.merged;
+  const rows=t.regions.slice().map(r=>{
+    const ep=r.early||0;
+    const total = merged ? (r.day!=null?r.day:ep) : ep+(r.day||0);
+    const dp = merged ? (r.day!=null?Math.max(0,r.day-ep):0) : (r.day||0);
+    return {...r, total, ep, dp, incomplete: merged && r.day==null};
+  }).sort((a,b)=>b.total-a.total);
+  const maxTot=Math.max(...rows.map(r=>r.total),50);
+  const me=m.sido||"";
+
+  html += `<div class="vcard">
+    <div class="vlegend"><span class="e"><i></i>사전</span><span class="d"><i></i>${merged?'당일':'당일'}</span></div>` +
+    rows.map(r=>{
+      const isMe = me && r.name===me;
+      return `<div class="vrow ${isMe?'me':''}">
+        <div class="vnm">${r.name}${isMe?' <span class="star">⭐</span>':''}</div>
+        <div class="vbars">
+          <div class="vb e"><span style="width:${Math.min(100,r.ep/maxTot*100)}%"></span></div>
+          <div class="vb d"><span style="width:${Math.min(100,r.dp/maxTot*100)}%"></span></div>
+        </div>
+        <div class="vtot"><b>${pct(r.total)}%</b><small>${r.incomplete?'사전 '+pct(r.ep)+'%+':'사전'+pct(r.ep)+'·당일'+pct(r.dp)}</small></div>
+      </div>`;
+    }).join("") +
+    `<div class="vsrc">출처: ${t.source} · ${merged?'누적 총투표율(사전 포함, '+t.as_of_day+' 기준)':'사전=5/30 최종 / 당일='+t.as_of_day} · 전체 시도·시군구 실시간은 상단 ‘선관위’ 버튼<br>※ ‘+’ 지역은 누적 집계중(사전만 반영)입니다.</div>
+  </div>`;
+  v.innerHTML=html;
+}
+
+/* ───────── 8·9기 비교 뷰 ───────── */
+function renderCompare(){
+  const v=document.getElementById("view");
+  const t=DATA&&DATA.turnout; const c22=COMPARE2022;
+  const e=(t&&t.early)||{}, d=(t&&t.day)||{};
+  const cur9 = (e.national||0)+(d.national||0);          // 9기 현재 누적
+  const fin8 = c22.national_final;                        // 8기 최종
+  // 동시간대(낮12시) 공정비교
+  const noon8 = c22.national_noon, noon9 = d.national;
+  const noonDiff = (noon9!=null)?(noon9-noon8):null;
+
+  let html = `<div class="cmpwrap">
+    <div class="cmphead">
+      <div class="ch-title">민선 8기 <span>vs</span> 9기 · 지역별 투표율 비교</div>
+      <div class="ch-nat">
+        <div class="cn box8"><div class="k">민선8기 (2022) 최종</div><div class="vv">${pct(fin8)}<small>%</small></div></div>
+        <div class="cn vs">▶</div>
+        <div class="cn box9"><div class="k">민선9기 (2026) 현재</div><div class="vv">${pct(cur9)}<small>%</small></div><div class="prog">진행중</div></div>
+      </div>
+      ${noonDiff!=null?`<div class="ch-fair">⚖️ <b>동시간대(낮 12시) 공정비교</b> — 8기 ${pct(noon8)}% vs 9기 <b style="color:var(--gold)">${pct(noon9)}%</b>
+        → 9기가 <b style="color:${noonDiff>=0?'var(--good)':'var(--bad)'}">${noonDiff>=0?'＋':''}${noonDiff.toFixed(1)}%p ${noonDiff>=0?'앞서는 중':'뒤지는 중'}</b>. 사전투표도 8기 ${pct(c22.national_early)}% → 9기 ${pct(e.national)}%(역대최고).
+        <br>※ 9기 ‘현재’는 개표 전 진행중 수치 → 같은 시간 기준 8기를 앞서 <b>최종 추월이 유력</b>합니다.</div>`:''}
+    </div>`;
+
+  // 지역별: 8기 최종 vs 9기 현재
+  const me=getMy().sido||"";
+  const rows=(t&&t.regions?t.regions:[]).map(r=>{
+    const v8=c22.regions[r.name]; const v9=(r.early||0)+(r.day||0);
+    return {name:r.name, v8, v9, day:r.day, gap:(v8!=null?v9-v8:null)};
+  }).sort((a,b)=>(b.v8||0)-(a.v8||0));
+  const mx=Math.max(...rows.map(r=>Math.max(r.v8||0,r.v9||0)),60);
+
+  html += `<div class="cmplist">
+    <div class="cmpleg"><span class="l8"><i></i>8기 최종</span><span class="l9"><i></i>9기 현재(진행)</span></div>`+
+    rows.map(r=>{
+      const isMe=me&&r.name===me;
+      return `<div class="cmprow ${isMe?'me':''}">
+        <div class="cnm">${r.name}${isMe?' ⭐':''}</div>
+        <div class="cbars">
+          <div class="cb b8"><span style="width:${Math.min(100,(r.v8||0)/mx*100)}%"></span><em>${pct(r.v8)}</em></div>
+          <div class="cb b9"><span style="width:${Math.min(100,(r.v9||0)/mx*100)}%"></span><em>${pct(r.v9)}${r.day==null?'+':''}</em></div>
+        </div>
+      </div>`;
+    }).join("")+
+    `<div class="vsrc">8기=2022 제8회 최종(완료) · 9기=2026 제9회 현재 누적(사전＋당일, 진행중) · 출처: 중앙선거관리위원회<br>※ ‘+’ 표시 지역은 당일 집계중(사전투표만 반영). 개표가 진행되면 9기 막대가 8기를 향해 차오릅니다.</div>
+  </div></div>`;
+  v.innerHTML=html;
+}
+
+/* ───────── 개표 뷰 ───────── */
+function avatarHTML(c){
+  const col=pc(c.party);
+  if(c.photo) return `<img class="avatar" src="${c.photo}" alt="${c.name||''}" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'avatar',textContent:'${(c.name||'?').slice(0,1)}',style:'background:${col}'}))">`;
+  return `<div class="avatar" style="background:${col}">${(c.name||'?').slice(0,1)}</div>`;
+}
+function badgeHTML(c,first){
+  if(c.status==='win'||c.elected) return '<span class="badge win">당선확정</span>';
+  if(c.status==='exit') return '<span class="badge exit">출구조사 예측</span>';
+  if(first && c.status==='lead') return '<span class="badge lead">당선유력</span>';
+  if(first) return '<span class="badge lead">우세</span>';
+  return '';
+}
+function renderRaces(){
+  const v=document.getElementById("view");
+  const cat=DATA&&DATA.categories&&DATA.categories[CUR];
+  const races=cat&&cat.races;
+  if(!races||!races.length){
+    v.innerHTML=`<div class="grid"><div class="empty"><div class="big">🗳️</div><b>개표 데이터 대기 중</b>
+      <div style="margin-top:7px">투표 종료(18:00) 후 개표가 시작되면 후보 사진과 함께 자동 표시됩니다.<br>
+      지금은 위 <b>‘선관위 실시간’</b> 버튼으로 확인하세요.</div></div></div>`;
+    return;
+  }
+  v.innerHTML=`<div class="grid">`+races.map(r=>{
+    const cs=(r.candidates||[]).slice().sort((a,b)=>(b.pct||0)-(a.pct||0));
+    return `<div class="race">
+      <div class="rtop"><div class="area">${r.area||''}</div><div class="cnt">개표 <b>${pct(r.counted_pct)}%</b></div></div>
+      ${cs.map((c,i)=>{const col=pc(c.party);return `<div class="cand ${i===0?'first':''}">
+        ${avatarHTML(c)}
+        <div class="cinfo">
+          <div class="l1"><span class="nm">${c.name||''}</span><span class="pt">${c.party||''}</span>${badgeHTML(c,i===0)}</div>
+          <div class="l2"><span class="pbar"><span style="width:${Math.min(100,c.pct||0)}%;background:${col}"></span></span>
+            <span class="pct" style="color:${col}">${pct(c.pct)}%</span></div>
+          <div class="votes">${fmt(c.votes)}표</div>
+        </div></div>`;}).join('')}
+    </div>`;
+  }).join('')+`</div>`;
+}
+
+/* ───────── 라우팅 ───────── */
+function render(){
+  const meta=CONFIG.categories.find(c=>c.id===CUR);
+  document.getElementById("catTitle").textContent=meta.label.replace(/^[^\s가-힣]+\s/,"");
+  document.getElementById("necLink").href=meta.nec||CONFIG.necCount;
+  const isT=CUR==="turnout", isC=CUR==="compare";
+  document.getElementById("ofTitle").textContent=(isT||isC)?"선관위 실시간 투표율":"선관위 공식 실시간 개표";
+  document.getElementById("ofSub").textContent=(isT||isC)?"전국 시도·시군구별 실시간 투표율 원본":"중앙선거관리위원회 선거통계시스템 — 가장 정확한 실시간 원본";
+  if(isC) renderCompare(); else if(isT) renderTurnout(); else renderRaces();
+}
+
+function showUpdated(){
+  const el=document.getElementById("auto"); if(!el) return;
+  let hhmm="";
+  try{ const d=new Date(DATA&&DATA.updated); if(!isNaN(d)){ hhmm=String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0"); } }catch(e){}
+  el.textContent = hhmm ? ("자동갱신 60초 · 최신 "+hhmm) : "자동갱신 60초";
+}
+async function load(){
+  try{
+    const res=await fetch(CONFIG.dataUrl+"?t="+Date.now(),{cache:"no-store"});
+    if(res.ok){ const j=await res.json(); if(j&&j.turnout) DATA=j; }
+  }catch(e){}
+  renderHero(); render(); showUpdated();
+}
+
+buildTabs(); renderHero(); render(); load();
+document.getElementById("reload").onclick=load;
+setInterval(load, CONFIG.refreshSec*1000);
+</script>
+
+<!-- ────────────────────────────────────────────────────────────
+     접속자 카운팅 (GoatCounter · 무료·오픈소스·쿠키리스)
+     시간별·날짜별 방문자 자동 집계 → 대시보드에서 확인
+     ───────────────────────────────────────────────────────────
+     ▶ 작동시키는 법 (대표님 1회 가입, 약 2분):
+       1) https://www.goatcounter.com/signup 무료 가입
+          (Code 칸에 예: kpri-election  입력 → 내 주소가
+           https://kpri-election.goatcounter.com 로 생성됨)
+       2) 아래 data-goatcounter 주소의 YOURCODE 를
+          위에서 정한 코드(kpri-election)로 교체
+       3) 저장 후 재배포 → 이 시점부터 시간별·날짜별 집계 시작
+       4) 통계 보기: https://YOURCODE.goatcounter.com  (로그인)
+          - Time of day(시간별) / Date range(날짜별) 그래프 기본 제공
+       ※ 가입 전까지는 집계되지 않습니다(과거 트래픽은 소급 불가).
+     ──────────────────────────────────────────────────────────── -->
+<script data-goatcounter="https://YOURCODE.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
