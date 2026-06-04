@@ -347,12 +347,12 @@ const COMPARE2022 = {
 /* ───────── 내장 기본데이터(results.json 없어도 표시) ───────── */
 const FALLBACK = {
   election:"제9회 전국동시지방선거",
-  updated:"2026-06-03T20:31:00+09:00",
+  updated:"2026-06-04T12:58:00+09:00",
   turnout:{
-    as_of_day:"오후 5시",
-    merged:true,                              // 13시 이후=선관위 사전합산 누적
+    as_of_day:"최종(잠정)",
+    merged:true,                              // 사전합산 누적
     early:{ national:23.51, prev:20.62 },      // 사전투표 최종(이 누적에 포함됨)
-    day:{ national:57.4, prev:50.9 },          // 누적 총투표율(사전 포함) / 비교=2022 최종
+    day:{ national:61.0, prev:50.9 },          // 최종(잠정) 총투표율 61% / 비교=2022 최종
     source:"중앙선거관리위원회",
     // merged=true이므로 day=시도별 누적 총투표율(사전 포함), early=그 중 사전분
     regions:[
@@ -369,33 +369,58 @@ const FALLBACK = {
   },
   // ── 개표 총괄 (방송3사 출구조사 기준, 18시 발표) ──
   count:{
-    as_of:"방송3사 출구조사 (18시)",
-    source:"방송3사(KBS·MBC·SBS) 출구조사",
-    counted_pct:0.0,
+    as_of:"6/4 개표 막바지 · 잠정",
+    source:"중앙선거관리위원회 개표 · 언론 종합(MBC·파이낸셜뉴스·머니투데이·YTN)",
+    counted_pct:null,
     total_seats:16, seat_label:"광역단체장",
     tally:[
-      {party:"더불어민주당", val:11},
-      {party:"국민의힘", val:1},
-      {party:"경합", val:4}
+      {party:"더불어민주당", val:12},
+      {party:"국민의힘", val:4}
     ],
-    contests:"부산 · 대구 · 강원 · 전북",
-    note:"20:31 개표 극초반(당선확정 0곳) · 광역단체장 16곳(방송3사 출구조사 우세 기준) · 당선 윤곽 자정~새벽 · 서울 정원오·부산 전재수 두 자릿수 우세"
+    contests:"서울 0.26%p 초접전 오세훈 역전 · 부산 전재수 승 · 대구 추경호 · 강원 우상호",
+    note:"당선확정·당선유력 합산(잠정) · 최종 확정은 선관위 공식 발표 기준"
   },
   national:{ turnout_pct:57.4, counted_pct:0.0 },
   categories:{
     sido:{label:"광역단체장",races:[
-      {area:"서울", counted_pct:0, exit:true, candidates:[
-        {name:"정원오",party:"더불어민주당",pct:53.5,status:"exit"},
-        {name:"오세훈",party:"국민의힘",pct:42.9}]},
-      {area:"부산", counted_pct:0, exit:true, candidates:[
-        {name:"전재수",party:"더불어민주당",pct:53.9,status:"exit"},
-        {name:"박형준",party:"국민의힘",pct:44.4}]},
-      {area:"대구", counted_pct:0, exit:true, candidates:[
-        {name:"추경호",party:"국민의힘",pct:49.9,status:"exit"},
-        {name:"김부겸",party:"더불어민주당",pct:49.1}]},
-      {area:"강원", counted_pct:0, exit:true, candidates:[
-        {name:"우상호",party:"더불어민주당",pct:51.3,status:"exit"},
-        {name:"김진태",party:"국민의힘",pct:48.7}]}
+      {area:"서울", counted_pct:95.6, candidates:[
+        {name:"오세훈",party:"국민의힘",pct:48.77,status:"win"},
+        {name:"정원오",party:"더불어민주당",pct:48.51}]},
+      {area:"경기", candidates:[
+        {name:"추미애",party:"더불어민주당",pct:54.79,status:"win"}]},
+      {area:"부산", candidates:[
+        {name:"전재수",party:"더불어민주당",status:"win"},
+        {name:"박형준",party:"국민의힘"}]},
+      {area:"대구", candidates:[
+        {name:"추경호",party:"국민의힘",status:"lead"},
+        {name:"김부겸",party:"더불어민주당"}]},
+      {area:"인천", candidates:[
+        {name:"박찬대",party:"더불어민주당",status:"win"}]},
+      {area:"강원", candidates:[
+        {name:"우상호",party:"더불어민주당",status:"lead"},
+        {name:"김진태",party:"국민의힘"}]},
+      {area:"전북", candidates:[
+        {name:"이원택",party:"더불어민주당",pct:52.22,status:"win"},
+        {name:"김관영",party:"무소속",pct:41.38}]},
+      {area:"전남광주", candidates:[
+        {name:"민형배",party:"더불어민주당",status:"win"}]},
+      {area:"대전", candidates:[
+        {name:"허태정",party:"더불어민주당",status:"win"}]},
+      {area:"울산", candidates:[
+        {name:"김상욱",party:"더불어민주당",status:"win"}]},
+      {area:"세종", candidates:[
+        {name:"조상호",party:"더불어민주당",status:"lead"}]},
+      {area:"충북", candidates:[
+        {name:"신용한",party:"더불어민주당",status:"win"}]},
+      {area:"충남", candidates:[
+        {name:"박수현",party:"더불어민주당",status:"lead"}]},
+      {area:"경북", candidates:[
+        {name:"이철우",party:"국민의힘",status:"win"}]},
+      {area:"경남", candidates:[
+        {name:"박완수",party:"국민의힘",status:"lead"},
+        {name:"김경수",party:"더불어민주당"}]},
+      {area:"제주", candidates:[
+        {name:"위성곤",party:"더불어민주당",status:"win"}]}
     ]},
     sigun:{label:"기초단체장",races:[]},
     edu:{label:"교육감",races:[]}, gwang:{label:"광역의원",races:[]},
