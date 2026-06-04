@@ -1,7 +1,7 @@
 {
   "_note": "6/4 개표 막바지 기준 최종(잠정) 결과. merged=true: day=사전포함 누적 총투표율. 시도별 투표율은 오후 5시 공표값(최종 시도별 발표 시 갱신).",
   "election": "제9회 전국동시지방선거",
-  "updated": "2026-06-04T14:03:00+09:00",
+  "updated": "2026-06-04T14:20:00+09:00",
   "turnout": {
     "as_of_day": "최종(잠정)",
     "merged": true,
@@ -368,11 +368,86 @@
     },
     "sigun": {
       "label": "기초단체장",
-      "races": []
+      "races": [
+        {
+          "area": "⭐ 화성시",
+          "counted_pct": 99.97,
+          "candidates": [
+            {
+              "name": "정명근",
+              "party": "더불어민주당",
+              "pct": 59.42,
+              "status": "win"
+            },
+            {
+              "name": "박태경",
+              "party": "국민의힘",
+              "pct": 33.37
+            },
+            {
+              "name": "전성균",
+              "party": "개혁신당",
+              "pct": 7.19
+            }
+          ]
+        }
+      ]
     },
     "edu": {
       "label": "교육감",
-      "races": []
+      "races": [
+        {
+          "area": "서울",
+          "counted_pct": null,
+          "candidates": [
+            {
+              "name": "정근식",
+              "party": "진보",
+              "pct": 30.34,
+              "status": "win"
+            },
+            {
+              "name": "조전혁",
+              "party": "보수",
+              "pct": 22.55
+            }
+          ]
+        },
+        {
+          "area": "경기",
+          "counted_pct": null,
+          "candidates": [
+            {
+              "name": "안민석",
+              "party": "진보",
+              "pct": 51.81,
+              "status": "win"
+            },
+            {
+              "name": "임태희",
+              "party": "보수",
+              "pct": 47.18
+            }
+          ]
+        },
+        {
+          "area": "인천",
+          "counted_pct": null,
+          "candidates": [
+            {
+              "name": "도성훈",
+              "party": "진보",
+              "pct": 37.1,
+              "status": "win"
+            },
+            {
+              "name": "이대형",
+              "party": "보수",
+              "pct": 32.7
+            }
+          ]
+        }
+      ]
     },
     "gwang": {
       "label": "광역의원",

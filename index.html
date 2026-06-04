@@ -317,7 +317,8 @@ const CONFIG = {
 const PARTY = {
   "더불어민주당":"#1f5fd0","민주당":"#1f5fd0","국민의힘":"#e8333f",
   "개혁신당":"#ff7a1a","조국혁신당":"#2aa7ff","진보당":"#d6001c",
-  "정의당":"#ffcc00","무소속":"#8aa0c0"
+  "정의당":"#ffcc00","무소속":"#8aa0c0",
+  "진보":"#9d7bff","보수":"#8aa0c0"
 };
 const pc = p => PARTY[p] || "#8aa0c0";
 const fmt = n => (n==null?"–":Number(n).toLocaleString("ko-KR"));
@@ -347,7 +348,7 @@ const COMPARE2022 = {
 /* ───────── 내장 기본데이터(results.json 없어도 표시) ───────── */
 const FALLBACK = {
   election:"제9회 전국동시지방선거",
-  updated:"2026-06-04T14:03:00+09:00",
+  updated:"2026-06-04T14:20:00+09:00",
   turnout:{
     as_of_day:"최종(잠정)",
     merged:true,                              // 사전합산 누적
@@ -425,8 +426,23 @@ const FALLBACK = {
       {area:"제주", candidates:[
         {name:"위성곤",party:"더불어민주당",status:"win"}]}
     ]},
-    sigun:{label:"기초단체장",races:[]},
-    edu:{label:"교육감",races:[]}, gwang:{label:"광역의원",races:[]},
+    sigun:{label:"기초단체장",races:[
+      {area:"⭐ 화성시", counted_pct:99.97, candidates:[
+        {name:"정명근",party:"더불어민주당",pct:59.42,status:"win"},
+        {name:"박태경",party:"국민의힘",pct:33.37},
+        {name:"전성균",party:"개혁신당",pct:7.19}]}
+    ]},
+    edu:{label:"교육감",races:[
+      {area:"서울", candidates:[
+        {name:"정근식",party:"진보",pct:30.34,status:"win"},
+        {name:"조전혁",party:"보수",pct:22.55}]},
+      {area:"경기", candidates:[
+        {name:"안민석",party:"진보",pct:51.81,status:"win"},
+        {name:"임태희",party:"보수",pct:47.18}]},
+      {area:"인천", candidates:[
+        {name:"도성훈",party:"진보",pct:37.1,status:"win"},
+        {name:"이대형",party:"보수",pct:32.7}]}
+    ]}, gwang:{label:"광역의원",races:[]},
     gicho:{label:"기초의원",races:[]}, prop:{label:"비례대표",races:[]}
   }
 };
