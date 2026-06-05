@@ -1,7 +1,7 @@
 {
   "_note": "선관위 최종집계: 전국 61.0%(+10.1%p), 시도별 17곳 전체 최종치(뉴시스 표 기준). 광역 16곳 전원 확정·득표율 완비.",
   "election": "제9회 전국동시지방선거",
-  "updated": "2026-06-04T16:10:00+09:00",
+  "updated": "2026-06-06T10:00:00+09:00",
   "turnout": {
     "as_of_day": "최종",
     "merged": true,
@@ -403,7 +403,7 @@
       "label": "기초단체장",
       "races": [
         {
-          "area": "⭐ 화성시",
+          "area": "⭐ 경기 화성",
           "counted_pct": 99.97,
           "candidates": [
             {
@@ -423,6 +423,556 @@
               "pct": 7.19
             }
           ]
+        },
+        {
+          "area": "경기 수원",
+          "candidates": [
+            {
+              "name": "이재준",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경기 고양",
+          "candidates": [
+            {
+              "name": "민경선",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경기 용인",
+          "candidates": [
+            {
+              "name": "이상일",
+              "party": "국민의힘",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경기 성남",
+          "candidates": [
+            {
+              "name": "신상진",
+              "party": "국민의힘",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경기 부천",
+          "candidates": [
+            {
+              "name": "조용익",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경기 안산",
+          "candidates": [
+            {
+              "name": "이민근",
+              "party": "국민의힘",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경기 남양주",
+          "candidates": [
+            {
+              "name": "최현덕",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경기 안양",
+          "candidates": [
+            {
+              "name": "최대호",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경기 평택",
+          "candidates": [
+            {
+              "name": "최원용",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경기 시흥",
+          "candidates": [
+            {
+              "name": "임병택",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경기 파주",
+          "candidates": [
+            {
+              "name": "손배찬",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경기 의정부",
+          "candidates": [
+            {
+              "name": "김원기",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경기 김포",
+          "candidates": [
+            {
+              "name": "이기형",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경기 광주",
+          "candidates": [
+            {
+              "name": "박관열",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경기 광명",
+          "candidates": [
+            {
+              "name": "박승원",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경기 군포",
+          "candidates": [
+            {
+              "name": "한대희",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경기 하남",
+          "candidates": [
+            {
+              "name": "이현재",
+              "party": "국민의힘",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경기 오산",
+          "candidates": [
+            {
+              "name": "조용호",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경기 양주",
+          "candidates": [
+            {
+              "name": "정덕영",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경기 이천",
+          "candidates": [
+            {
+              "name": "성수석",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경기 구리",
+          "candidates": [
+            {
+              "name": "신동화",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경기 안성",
+          "candidates": [
+            {
+              "name": "김보라",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경기 포천",
+          "candidates": [
+            {
+              "name": "백영현",
+              "party": "국민의힘",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경기 의왕",
+          "candidates": [
+            {
+              "name": "김성제",
+              "party": "국민의힘",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경기 여주",
+          "candidates": [
+            {
+              "name": "이충우",
+              "party": "국민의힘",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경기 양평",
+          "candidates": [
+            {
+              "name": "전진선",
+              "party": "국민의힘",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경기 동두천",
+          "candidates": [
+            {
+              "name": "박형덕",
+              "party": "국민의힘",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경기 과천",
+          "candidates": [
+            {
+              "name": "신계용",
+              "party": "국민의힘",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경기 가평",
+          "candidates": [
+            {
+              "name": "서태원",
+              "party": "국민의힘",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경기 연천",
+          "candidates": [
+            {
+              "name": "김덕현",
+              "party": "국민의힘",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "서울 종로",
+          "candidates": [
+            {
+              "name": "유찬종",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "서울 중구",
+          "candidates": [
+            {
+              "name": "김길성",
+              "party": "국민의힘",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "서울 용산",
+          "candidates": [
+            {
+              "name": "김경대",
+              "party": "국민의힘",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "서울 성동",
+          "candidates": [
+            {
+              "name": "유보화",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "서울 광진",
+          "candidates": [
+            {
+              "name": "김경호",
+              "party": "국민의힘",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "서울 동대문",
+          "candidates": [
+            {
+              "name": "최동민",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "서울 중랑",
+          "candidates": [
+            {
+              "name": "류경기",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "서울 성북",
+          "candidates": [
+            {
+              "name": "이승로",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "서울 강북",
+          "candidates": [
+            {
+              "name": "정창수",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "서울 도봉",
+          "candidates": [
+            {
+              "name": "김동욱",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "서울 노원",
+          "candidates": [
+            {
+              "name": "서준오",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "서울 은평",
+          "candidates": [
+            {
+              "name": "김미경",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "서울 서대문",
+          "candidates": [
+            {
+              "name": "박운기",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "서울 마포",
+          "candidates": [
+            {
+              "name": "유동균",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "서울 양천",
+          "candidates": [
+            {
+              "name": "이기재",
+              "party": "국민의힘",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "서울 강서",
+          "candidates": [
+            {
+              "name": "진교훈",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "서울 구로",
+          "candidates": [
+            {
+              "name": "장인홍",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "서울 금천",
+          "candidates": [
+            {
+              "name": "최기찬",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "서울 영등포",
+          "candidates": [
+            {
+              "name": "조유진",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "서울 동작",
+          "candidates": [
+            {
+              "name": "류삼영",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "서울 관악",
+          "candidates": [
+            {
+              "name": "박준희",
+              "party": "더불어민주당",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "서울 서초",
+          "candidates": [
+            {
+              "name": "전성수",
+              "party": "국민의힘",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "서울 강남",
+          "candidates": [
+            {
+              "name": "김현기",
+              "party": "국민의힘",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "서울 송파",
+          "candidates": [
+            {
+              "name": "서강석",
+              "party": "국민의힘",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "서울 강동",
+          "candidates": [
+            {
+              "name": "이수희",
+              "party": "국민의힘",
+              "status": "win"
+            }
+          ]
         }
       ]
     },
@@ -431,13 +981,12 @@
       "races": [
         {
           "area": "서울",
-          "counted_pct": null,
           "candidates": [
             {
               "name": "정근식",
               "party": "진보",
-              "pct": 30.34,
-              "status": "win"
+              "status": "win",
+              "pct": 30.34
             },
             {
               "name": "조전혁",
@@ -448,13 +997,12 @@
         },
         {
           "area": "경기",
-          "counted_pct": null,
           "candidates": [
             {
               "name": "안민석",
               "party": "진보",
-              "pct": 51.81,
-              "status": "win"
+              "status": "win",
+              "pct": 51.81
             },
             {
               "name": "임태희",
@@ -465,18 +1013,147 @@
         },
         {
           "area": "인천",
-          "counted_pct": null,
           "candidates": [
             {
               "name": "도성훈",
               "party": "진보",
-              "pct": 37.1,
-              "status": "win"
+              "status": "win",
+              "pct": 37.1
             },
             {
               "name": "이대형",
               "party": "보수",
               "pct": 32.7
+            }
+          ]
+        },
+        {
+          "area": "부산",
+          "candidates": [
+            {
+              "name": "김석준",
+              "party": "진보",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "울산",
+          "candidates": [
+            {
+              "name": "조용식",
+              "party": "진보",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "충남",
+          "candidates": [
+            {
+              "name": "이병도",
+              "party": "진보",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경남",
+          "candidates": [
+            {
+              "name": "송영기",
+              "party": "진보",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "강원",
+          "candidates": [
+            {
+              "name": "강삼영",
+              "party": "진보",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "전북",
+          "candidates": [
+            {
+              "name": "천호성",
+              "party": "진보",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "전남",
+          "candidates": [
+            {
+              "name": "김대중",
+              "party": "진보",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "제주",
+          "candidates": [
+            {
+              "name": "고의숙",
+              "party": "진보",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "대구",
+          "candidates": [
+            {
+              "name": "강은희",
+              "party": "보수",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "경북",
+          "candidates": [
+            {
+              "name": "임종식",
+              "party": "보수",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "충북",
+          "candidates": [
+            {
+              "name": "윤건영",
+              "party": "보수",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "세종",
+          "candidates": [
+            {
+              "name": "강미애",
+              "party": "보수",
+              "status": "win"
+            }
+          ]
+        },
+        {
+          "area": "대전",
+          "candidates": [
+            {
+              "name": "오석진",
+              "party": "보수",
+              "status": "win"
             }
           ]
         }
