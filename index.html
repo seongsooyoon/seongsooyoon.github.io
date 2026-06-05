@@ -228,6 +228,30 @@
   .cb.b8 span{background:linear-gradient(90deg,#5c7bbf,#8ea7d8)}
   .cb.b9 span{background:linear-gradient(90deg,var(--gold2),var(--gold))}
   .cb em{position:absolute; right:8px; top:50%; transform:translateY(-50%); font-size:10px; font-weight:900; font-style:normal; color:#fff; text-shadow:0 1px 2px rgba(0,0,0,.5)}
+
+  /* ── 결과 지도 ── */
+  .mapcard{background:rgba(255,255,255,.04); border:1px solid var(--line); border-radius:var(--r); padding:16px 14px; box-shadow:var(--shadow)}
+  .mhead{font-size:15px; font-weight:900; text-align:center}
+  .mchips{display:flex; gap:9px; justify-content:center; margin-top:12px}
+  .mchip{flex:0 1 150px; text-align:center; border:1px solid; border-radius:13px; padding:9px 8px}
+  .mchip b{font-size:26px; font-weight:900; display:block; line-height:1}
+  .mchip span{font-size:10.5px; font-weight:800; color:var(--mut)}
+  .mapgrid{display:grid; grid-template-columns:repeat(5,1fr); gap:7px; max-width:480px; margin:16px auto 6px}
+  .mtile{aspect-ratio:1; border-radius:13px; display:flex; flex-direction:column; align-items:center; justify-content:center; cursor:pointer; color:#fff; box-shadow:0 4px 12px rgba(0,0,0,.3); transition:transform .15s}
+  .mtile:active{transform:scale(.94)}
+  .mtile b{font-size:12.5px; font-weight:900; text-shadow:0 1px 2px rgba(0,0,0,.4)}
+  .mtile span{font-size:9px; opacity:.92; margin-top:2px; text-shadow:0 1px 2px rgba(0,0,0,.4)}
+  .mhint{font-size:10.5px; color:var(--mut2); text-align:center; margin-top:12px; line-height:1.6}
+  .mback{border:1px solid var(--line2); background:rgba(255,255,255,.06); color:#fff; font-family:inherit; font-size:12.5px; font-weight:800; padding:8px 14px; border-radius:99px; cursor:pointer; margin-bottom:12px}
+  .msel{border:1.5px solid; border-radius:14px; padding:13px 15px; display:flex; align-items:center; justify-content:space-between; gap:10px}
+  .msel-a{font-size:17px; font-weight:900}
+  .msel-w{font-size:14px; font-weight:800} .msel-w span{font-size:11px; color:var(--mut)} .msel-w em{font-style:normal; color:var(--gold); font-weight:900}
+  .msel-w .mwin{font-style:normal; font-size:10px; font-weight:900; background:var(--good); color:#03241a; padding:2px 8px; border-radius:99px; margin-left:5px}
+  .subgrid{display:grid; grid-template-columns:repeat(4,1fr); gap:7px; margin-top:12px}
+  @media(min-width:680px){ .subgrid{grid-template-columns:repeat(6,1fr)} }
+  .mtile.sm{aspect-ratio:auto; padding:10px 3px; border-radius:10px}
+  .mtile.sm b{font-size:11px} .mtile.sm span{font-size:8.5px}
+  .mgo{display:inline-block; background:var(--ppp); color:#fff; font-weight:800; font-size:13px; padding:11px 18px; border-radius:11px}
   footer{padding:22px 16px 40px; text-align:center; color:var(--mut2); font-size:11.5px; line-height:1.7; max-width:1180px; margin:0 auto}
   footer .fbrand{font-size:13.5px; color:var(--ink)} footer .fbrand b{color:var(--gold)}
   footer .ftag{font-size:12px; color:var(--mut); font-style:italic; margin:5px 0 12px}
@@ -304,6 +328,7 @@ const CONFIG = {
     necSido:"https://www.nec.go.kr/site/lvt/main.do",
     necSigun:"https://www.nec.go.kr/site/lvt/main.do" },
   categories: [
+    { id:"map",     label:"🗺️ 결과지도", nec:"https://info.nec.go.kr/" },
     { id:"turnout", label:"📊 투표율",   nec:"https://www.nec.go.kr/site/lvt/main.do" },
     { id:"compare", label:"📈 8·9기 비교", nec:"https://www.nec.go.kr/site/lvt/main.do" },
     { id:"sido",    label:"광역단체장",  nec:"https://info.nec.go.kr/" },
@@ -345,10 +370,71 @@ const COMPARE2022 = {
     "전북":48.6,"전남":58.4,"경북":52.7,"경남":53.4,"제주":53.1 }
 };
 
+
+/* ───────── 결과 지도 (타일 카르토그램) ───────── */
+const MAP_TILES={"서울":[2,1],"경기":[3,1],"강원":[4,1],"인천":[1,2],"세종":[2,2],"충북":[3,2],"경북":[4,2],
+ "충남":[1,3],"대전":[2,3],"대구":[4,3],"울산":[5,3],"전북":[1,4],"경남":[3,4],"부산":[4,4],"전남광주":[1,5],"제주":[1,6]};
+let MAPSEL=null;
+window.mapSel=function(a){MAPSEL=a;renderMapView();};
+window.mapBack=function(){MAPSEL=null;renderMapView();};
+function sidoWinner(area){
+  const rs=(((DATA||{}).categories||{}).sido||{}).races||[];
+  const r=rs.find(x=>x.area===area); if(!r) return null;
+  return (r.candidates||[]).find(c=>c.status==='win')||(r.candidates||[])[0]||null;
+}
+function renderMapView(){
+  const v=document.getElementById("view"); if(!v) return;
+  const tally=(((DATA||{}).count)||{}).tally||[];
+  const chips=tally.map(t=>{const col=t.party==='경합'?'#8aa0c0':pc(t.party);
+    return `<div class="mchip" style="border-color:${col}66;background:${col}22"><b style="color:${col}">${t.val}</b><span>${t.party}</span></div>`;}).join('');
+  if(!MAPSEL){
+    const tiles=Object.keys(MAP_TILES).map(a=>{
+      const w=sidoWinner(a); const col=w?pc(w.party):'#33415e'; const cr=MAP_TILES[a];
+      return `<div class="mtile" style="grid-column:${cr[0]};grid-row:${cr[1]};background:${col}" onclick="mapSel('${a}')"><b>${a}</b><span>${w?w.name:''}</span></div>`;
+    }).join('');
+    v.innerHTML=`<div class="mapcard">
+      <div class="mhead">\U0001F5FA️ 광역단체장 ${(((DATA||{}).count)||{}).total_seats||16}곳 · 정당별 결과</div>
+      <div class="mchips">${chips}</div>
+      <div class="mapgrid">${tiles}</div>
+      <div class="mhint">지역 타일을 누르면 시·군·구 당선 현황이 펼쳐집니다</div>
+    </div>`;
+    return;
+  }
+  const w=sidoWinner(MAPSEL); const col=w?pc(w.party):'#33415e';
+  const pref = MAPSEL==='서울' ? '서울 ' : (MAPSEL==='경기' ? '경기 ' : null);
+  let sub='';
+  if(pref){
+    const rs=((((DATA||{}).categories||{}).sigun||{}).races||[]).filter(x=>(x.area||'').replace('⭐ ','').startsWith(pref));
+    const m=rs.filter(x=>(x.candidates[0]||{}).party==='더불어민주당').length;
+    const k=rs.filter(x=>(x.candidates[0]||{}).party==='국민의힘').length;
+    sub=`<div class="mchips" style="margin-top:12px">
+      <div class="mchip" style="border-color:${pc('더불어민주당')}66;background:${pc('더불어민주당')}22"><b style="color:${pc('더불어민주당')}">${m}</b><span>더불어민주당</span></div>
+      <div class="mchip" style="border-color:${pc('국민의힘')}66;background:${pc('국민의힘')}22"><b style="color:${pc('국민의힘')}">${k}</b><span>국민의힘</span></div>
+    </div>
+    <div class="subgrid">`+rs.map(x=>{
+      const c0=x.candidates[0]||{}; const cc=pc(c0.party);
+      const nm=(x.area||'').replace('⭐ ','').replace(pref,'');
+      return `<a class="mtile sm" style="background:${cc}" href="https://info.nec.go.kr/" target="_blank" rel="noopener"><b>${nm}</b><span>${c0.name||''}</span></a>`;
+    }).join('')+`</div>
+    <div class="mhint">시·군·구 타일(시장·구청장 당선)을 누르면 선관위 당선인 통계(광역·기초의원 포함)로 이동</div>`;
+  } else {
+    sub=`<div class="mhint" style="margin-top:16px">이 지역의 시·군·구별 타일은 준비 중입니다.<br><br>
+      <a class="mgo" href="https://info.nec.go.kr/" target="_blank" rel="noopener">선관위 당선인 통계에서 상세 보기 ↗</a></div>`;
+  }
+  v.innerHTML=`<div class="mapcard">
+    <button class="mback" onclick="mapBack()">← 전국 지도로</button>
+    <div class="msel" style="border-color:${col}88">
+      <div class="msel-a">${MAPSEL}</div>
+      <div class="msel-w"><b style="color:${col}">${w?w.name:'-'}</b> <span>${w?w.party:''}</span>${w&&w.pct?` <em>${pct(w.pct)}%</em>`:''} <i class="mwin">당선</i></div>
+    </div>
+    ${sub}
+  </div>`;
+}
+
 /* ───────── 내장 기본데이터(results.json 없어도 표시) ───────── */
 const FALLBACK = {
   election:"제9회 전국동시지방선거",
-  updated:"2026-06-06T10:00:00+09:00",
+  updated:"2026-06-06T11:00:00+09:00",
   turnout:{
     as_of_day:"최종",
     merged:true,                              // 사전합산 누적
@@ -378,9 +464,9 @@ const FALLBACK = {
   },
   // ── 개표 총괄 (방송3사 출구조사 기준, 18시 발표) ──
   count:{
-    as_of:"최종 — 16곳 전원 확정",
+    as_of:"개표 완료 · 당선인 공고", done:true,
     source:"중앙선거관리위원회 개표 · 언론 종합(MBC·파이낸셜뉴스·머니투데이·YTN)",
-    counted_pct:null,
+    counted_pct:100.0,
     total_seats:16, seat_label:"광역단체장",
     tally:[
       {party:"더불어민주당", val:12},
@@ -392,7 +478,7 @@ const FALLBACK = {
   national:{ turnout_pct:57.4, counted_pct:0.0 },
   categories:{
     sido:{label:"광역단체장",races:[
-      {area:"서울", counted_pct:97.7, candidates:[
+      {area:"서울", counted_pct:100, candidates:[
         {name:"오세훈",party:"국민의힘",pct:48.94,status:"win"},
         {name:"정원오",party:"더불어민주당",pct:48.34}]},
       {area:"경기", candidates:[
@@ -439,7 +525,7 @@ const FALLBACK = {
         {name:"위성곤",party:"더불어민주당",pct:62.63,status:"win"}]}
     ]},
     sigun:{label:"기초단체장",races:[
-      {area:"⭐ 경기 화성",counted_pct:99.97,candidates:[{name:"정명근",party:"더불어민주당",pct:59.42,status:"win"},{name:"박태경",party:"국민의힘",pct:33.37},{name:"전성균",party:"개혁신당",pct:7.19}]},
+      {area:"⭐ 경기 화성",counted_pct:100,candidates:[{name:"정명근",party:"더불어민주당",pct:59.42,status:"win"},{name:"박태경",party:"국민의힘",pct:33.37},{name:"전성균",party:"개혁신당",pct:7.19}]},
       {area:"경기 수원",candidates:[{name:"이재준",party:"더불어민주당",status:"win"}]},
       {area:"경기 고양",candidates:[{name:"민경선",party:"더불어민주당",status:"win"}]},
       {area:"경기 용인",candidates:[{name:"이상일",party:"국민의힘",status:"win"}]},
@@ -705,8 +791,9 @@ function renderRaces(){
   }
   v.innerHTML=`<div class="grid">`+races.map(r=>{
     const cs=(r.candidates||[]).slice().sort((a,b)=>(b.pct||0)-(a.pct||0));
+    const cp=(r.counted_pct!=null)?r.counted_pct:(((DATA.count||{}).done)?100:null);
     return `<div class="race">
-      <div class="rtop"><div class="area">${r.area||''}</div><div class="cnt">개표 <b>${pct(r.counted_pct)}%</b></div></div>
+      <div class="rtop"><div class="area">${r.area||''}</div><div class="cnt">개표 <b>${pct(cp)}%</b></div></div>
       ${cs.map((c,i)=>{const col=pc(c.party);return `<div class="cand ${i===0?'first':''}">
         ${avatarHTML(c)}
         <div class="cinfo">
@@ -724,10 +811,10 @@ function render(){
   const meta=CONFIG.categories.find(c=>c.id===CUR);
   document.getElementById("catTitle").textContent=meta.label.replace(/^[^\s가-힣]+\s/,"");
   document.getElementById("necLink").href=meta.nec||CONFIG.necCount;
-  const isT=CUR==="turnout", isC=CUR==="compare";
-  document.getElementById("ofTitle").textContent=(isT||isC)?"선관위 실시간 투표율":"선관위 공식 실시간 개표";
-  document.getElementById("ofSub").textContent=(isT||isC)?"전국 시도·시군구별 실시간 투표율 원본":"중앙선거관리위원회 선거통계시스템 — 가장 정확한 실시간 원본";
-  if(isC) renderCompare(); else if(isT) renderTurnout(); else renderRaces();
+  const isT=CUR==="turnout", isC=CUR==="compare", isM=CUR==="map";
+  document.getElementById("ofTitle").textContent=isM?"선관위 당선인 통계":((isT||isC)?"선관위 실시간 투표율":"선관위 공식 개표·당선");
+  document.getElementById("ofSub").textContent=isM?"전국 당선인 공식 명단·득표 상세 원본":((isT||isC)?"전국 시도·시군구별 투표율 원본":"중앙선거관리위원회 선거통계시스템 — 공식 원본");
+  if(isM){MAPSEL=null;renderMapView();} else if(isC) renderCompare(); else if(isT) renderTurnout(); else renderRaces();
 }
 
 function showUpdated(){

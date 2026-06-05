@@ -1,7 +1,7 @@
 {
   "_note": "선관위 최종집계: 전국 61.0%(+10.1%p), 시도별 17곳 전체 최종치(뉴시스 표 기준). 광역 16곳 전원 확정·득표율 완비.",
   "election": "제9회 전국동시지방선거",
-  "updated": "2026-06-06T10:00:00+09:00",
+  "updated": "2026-06-06T11:00:00+09:00",
   "turnout": {
     "as_of_day": "최종",
     "merged": true,
@@ -103,9 +103,9 @@
     ]
   },
   "count": {
-    "as_of": "최종 — 16곳 전원 확정",
+    "as_of": "개표 완료 · 당선인 공고",
     "source": "중앙선거관리위원회 개표 · 언론 종합(MBC·파이낸셜뉴스·머니투데이·YTN)",
-    "counted_pct": null,
+    "counted_pct": 100.0,
     "total_seats": 16,
     "seat_label": "광역단체장",
     "tally": [
@@ -119,11 +119,12 @@
       }
     ],
     "contests": "서울 0.26%p 초접전 오세훈 역전 · 부산 전재수 승 · 대구 추경호 · 강원 우상호",
-    "note": "광역단체장 16곳 전원 당선확정·전 지역 득표율 완비 · 민주 12 : 국힘 4 · 서울 오세훈(첫 5선)·경기 추미애(첫 여성 광역)·전남광주 민형배(초대 통합시장) · 최종 수치는 선관위 공식 발표 기준"
+    "note": "광역단체장 16곳 전원 당선확정·전 지역 득표율 완비 · 민주 12 : 국힘 4 · 서울 오세훈(첫 5선)·경기 추미애(첫 여성 광역)·전남광주 민형배(초대 통합시장) · 최종 수치는 선관위 공식 발표 기준",
+    "done": true
   },
   "national": {
     "turnout_pct": 61.0,
-    "counted_pct": null
+    "counted_pct": 100.0
   },
   "categories": {
     "sido": {
@@ -131,7 +132,7 @@
       "races": [
         {
           "area": "서울",
-          "counted_pct": 97.7,
+          "counted_pct": 100.0,
           "candidates": [
             {
               "name": "오세훈",
@@ -149,7 +150,7 @@
         },
         {
           "area": "경기",
-          "counted_pct": null,
+          "counted_pct": 100.0,
           "candidates": [
             {
               "name": "추미애",
@@ -161,7 +162,7 @@
         },
         {
           "area": "부산",
-          "counted_pct": null,
+          "counted_pct": 100.0,
           "candidates": [
             {
               "name": "전재수",
@@ -178,7 +179,7 @@
         },
         {
           "area": "대구",
-          "counted_pct": null,
+          "counted_pct": 100.0,
           "candidates": [
             {
               "name": "추경호",
@@ -195,7 +196,7 @@
         },
         {
           "area": "인천",
-          "counted_pct": null,
+          "counted_pct": 100.0,
           "candidates": [
             {
               "name": "박찬대",
@@ -214,7 +215,7 @@
         },
         {
           "area": "강원",
-          "counted_pct": null,
+          "counted_pct": 100.0,
           "candidates": [
             {
               "name": "우상호",
@@ -233,7 +234,7 @@
         },
         {
           "area": "전북",
-          "counted_pct": null,
+          "counted_pct": 100.0,
           "candidates": [
             {
               "name": "이원택",
@@ -250,7 +251,7 @@
         },
         {
           "area": "전남광주",
-          "counted_pct": null,
+          "counted_pct": 100.0,
           "candidates": [
             {
               "name": "민형배",
@@ -266,7 +267,7 @@
         },
         {
           "area": "대전",
-          "counted_pct": null,
+          "counted_pct": 100.0,
           "candidates": [
             {
               "name": "허태정",
@@ -278,7 +279,7 @@
         },
         {
           "area": "울산",
-          "counted_pct": null,
+          "counted_pct": 100.0,
           "candidates": [
             {
               "name": "김상욱",
@@ -290,7 +291,7 @@
         },
         {
           "area": "세종",
-          "counted_pct": null,
+          "counted_pct": 100.0,
           "candidates": [
             {
               "name": "조상호",
@@ -315,7 +316,7 @@
         },
         {
           "area": "충북",
-          "counted_pct": null,
+          "counted_pct": 100.0,
           "candidates": [
             {
               "name": "신용한",
@@ -334,7 +335,7 @@
         },
         {
           "area": "충남",
-          "counted_pct": null,
+          "counted_pct": 100.0,
           "candidates": [
             {
               "name": "박수현",
@@ -353,7 +354,7 @@
         },
         {
           "area": "경북",
-          "counted_pct": null,
+          "counted_pct": 100.0,
           "candidates": [
             {
               "name": "이철우",
@@ -370,7 +371,7 @@
         },
         {
           "area": "경남",
-          "counted_pct": null,
+          "counted_pct": 100.0,
           "candidates": [
             {
               "name": "박완수",
@@ -387,7 +388,7 @@
         },
         {
           "area": "제주",
-          "counted_pct": null,
+          "counted_pct": 100.0,
           "candidates": [
             {
               "name": "위성곤",
@@ -404,7 +405,7 @@
       "races": [
         {
           "area": "⭐ 경기 화성",
-          "counted_pct": 99.97,
+          "counted_pct": 100.0,
           "candidates": [
             {
               "name": "정명근",
@@ -432,7 +433,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기 고양",
@@ -442,7 +444,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기 용인",
@@ -452,7 +455,8 @@
               "party": "국민의힘",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기 성남",
@@ -462,7 +466,8 @@
               "party": "국민의힘",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기 부천",
@@ -472,7 +477,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기 안산",
@@ -482,7 +488,8 @@
               "party": "국민의힘",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기 남양주",
@@ -492,7 +499,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기 안양",
@@ -502,7 +510,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기 평택",
@@ -512,7 +521,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기 시흥",
@@ -522,7 +532,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기 파주",
@@ -532,7 +543,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기 의정부",
@@ -542,7 +554,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기 김포",
@@ -552,7 +565,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기 광주",
@@ -562,7 +576,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기 광명",
@@ -572,7 +587,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기 군포",
@@ -582,7 +598,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기 하남",
@@ -592,7 +609,8 @@
               "party": "국민의힘",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기 오산",
@@ -602,7 +620,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기 양주",
@@ -612,7 +631,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기 이천",
@@ -622,7 +642,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기 구리",
@@ -632,7 +653,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기 안성",
@@ -642,7 +664,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기 포천",
@@ -652,7 +675,8 @@
               "party": "국민의힘",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기 의왕",
@@ -662,7 +686,8 @@
               "party": "국민의힘",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기 여주",
@@ -672,7 +697,8 @@
               "party": "국민의힘",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기 양평",
@@ -682,7 +708,8 @@
               "party": "국민의힘",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기 동두천",
@@ -692,7 +719,8 @@
               "party": "국민의힘",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기 과천",
@@ -702,7 +730,8 @@
               "party": "국민의힘",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기 가평",
@@ -712,7 +741,8 @@
               "party": "국민의힘",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기 연천",
@@ -722,7 +752,8 @@
               "party": "국민의힘",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "서울 종로",
@@ -732,7 +763,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "서울 중구",
@@ -742,7 +774,8 @@
               "party": "국민의힘",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "서울 용산",
@@ -752,7 +785,8 @@
               "party": "국민의힘",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "서울 성동",
@@ -762,7 +796,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "서울 광진",
@@ -772,7 +807,8 @@
               "party": "국민의힘",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "서울 동대문",
@@ -782,7 +818,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "서울 중랑",
@@ -792,7 +829,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "서울 성북",
@@ -802,7 +840,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "서울 강북",
@@ -812,7 +851,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "서울 도봉",
@@ -822,7 +862,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "서울 노원",
@@ -832,7 +873,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "서울 은평",
@@ -842,7 +884,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "서울 서대문",
@@ -852,7 +895,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "서울 마포",
@@ -862,7 +906,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "서울 양천",
@@ -872,7 +917,8 @@
               "party": "국민의힘",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "서울 강서",
@@ -882,7 +928,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "서울 구로",
@@ -892,7 +939,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "서울 금천",
@@ -902,7 +950,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "서울 영등포",
@@ -912,7 +961,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "서울 동작",
@@ -922,7 +972,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "서울 관악",
@@ -932,7 +983,8 @@
               "party": "더불어민주당",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "서울 서초",
@@ -942,7 +994,8 @@
               "party": "국민의힘",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "서울 강남",
@@ -952,7 +1005,8 @@
               "party": "국민의힘",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "서울 송파",
@@ -962,7 +1016,8 @@
               "party": "국민의힘",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "서울 강동",
@@ -972,7 +1027,8 @@
               "party": "국민의힘",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         }
       ]
     },
@@ -993,7 +1049,8 @@
               "party": "보수",
               "pct": 22.55
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경기",
@@ -1009,7 +1066,8 @@
               "party": "보수",
               "pct": 47.18
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "인천",
@@ -1025,7 +1083,8 @@
               "party": "보수",
               "pct": 32.7
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "부산",
@@ -1035,7 +1094,8 @@
               "party": "진보",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "울산",
@@ -1045,7 +1105,8 @@
               "party": "진보",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "충남",
@@ -1055,7 +1116,8 @@
               "party": "진보",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경남",
@@ -1065,7 +1127,8 @@
               "party": "진보",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "강원",
@@ -1075,7 +1138,8 @@
               "party": "진보",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "전북",
@@ -1085,7 +1149,8 @@
               "party": "진보",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "전남",
@@ -1095,7 +1160,8 @@
               "party": "진보",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "제주",
@@ -1105,7 +1171,8 @@
               "party": "진보",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "대구",
@@ -1115,7 +1182,8 @@
               "party": "보수",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "경북",
@@ -1125,7 +1193,8 @@
               "party": "보수",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "충북",
@@ -1135,7 +1204,8 @@
               "party": "보수",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "세종",
@@ -1145,7 +1215,8 @@
               "party": "보수",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         },
         {
           "area": "대전",
@@ -1155,7 +1226,8 @@
               "party": "보수",
               "status": "win"
             }
-          ]
+          ],
+          "counted_pct": 100.0
         }
       ]
     },
